@@ -1,11 +1,14 @@
+# users/views.py
 from rest_framework import generics
 from users.models import User
-from users.serializers import UserProfileSerializer
+from users.serializers import UserProfileSerializer, UserSerializer
 
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
 from .models import Payment
 from .serializers import PaymentSerializer
+
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
 class UserProfileUpdateAPIView(generics.RetrieveUpdateAPIView):
@@ -27,3 +30,26 @@ class PaymentListAPIView(generics.ListAPIView):
     filterset_fields = ("paid_course", "paid_lesson", "payment_method")
 
     ordering_fields = ("payment_date",)
+
+
+class UserCreateAPIView(generics.CreateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
+
+class UserRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class UserUpdateAPIView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class UserDestroyAPIView(generics.DestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
