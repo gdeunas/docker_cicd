@@ -7,4 +7,3 @@
     }
   }
 ]
-python manage.py loaddata groups
