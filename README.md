@@ -1,4 +1,4 @@
-# Django docker_compose HW_35.2
+# Django docker_cicd HW_35.2 
  
 ## Описание:
 
