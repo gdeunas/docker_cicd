@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [develop]
+    branches: [develop, feature/docker_cicd]
   pull_request:
-    branches: [develop]
+    branches: [develop, feature/docker_cicd]
 
 env:
   REGISTRY: ghcr.io
